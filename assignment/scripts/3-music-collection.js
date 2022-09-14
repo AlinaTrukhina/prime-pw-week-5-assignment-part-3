@@ -37,7 +37,10 @@ function showCollection(array) {
 }
 
 // test showCollection
+console.log('test showCollection');
+// showCollection(collection);
 console.log('test showCollection', showCollection(collection));
+
 
 // add findByArtist function to search by artist name
 function findByArtist(artist, array) {
@@ -56,3 +59,26 @@ function findByArtist(artist, array) {
 // test findByArtist
 console.log('test findByArtist, Plastikman:', findByArtist('Plastikman', collection));
 console.log('find by artist, Nirvana - expect empty array', findByArtist('Nirvana', collection));
+
+
+// create a search function
+function search(array, artist, year) {
+    const artistArray = [];
+    for (n in array) {
+        if (artist === array[n].albumArtist && year === array[n].albumYear) { // checks if both album in year are present
+            artistArray.push(array[n]);
+        } else if (artist == null || year == null || collection == null) { // checks if either input is null
+
+        return array;
+        }   
+    }   
+    return artistArray;
+}
+
+
+// test search function
+console.log('test search function - true', search(collection, 'Plastikman', 1998));
+console.log('test search function - false', search(collection, 'Plastikman', 1991));
+console.log('test search function - input empty', search(collection, 'Alice In Chains'));
+console.log('test search function - no search param', search(collection));
+

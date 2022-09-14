@@ -15,5 +15,15 @@ function addToCollection(title, artist, yearPublished) {
     return collection;
 }
 
-console.log('add a record to collection:', addToCollection('1', '2', 1993));
+// quick test
+console.log('add a record to collection:', addToCollection('Sheet One', 'Plastikman', 1993));
+console.log(collection);
+
+// test the function - add 6 albums, return array
+console.log('add boards of canada', addToCollection('Music Has The Right To Children', 'Boards of Canada', 1998));
+console.log('add waveform transmission', addToCollection('Waveform Transmission vol 1', 'Jeff Mills', 1992));
+console.log('add some drexcia side project', addToCollection('The Opening of the Cerebral Gate', 'Transllusion', 2001));
+console.log('add AIC', addToCollection('MTV Unplugged', 'Alice in Chains', 1996));
+console.log('add Consumed', addToCollection('Consumed', 'Plastikman', 1998));
+console.log('add reality to midi', addToCollection('Reality to Midi', 'Johannes Heil', 1998));
 console.log(collection);

@@ -9,7 +9,7 @@ function addToCollection(title, artist, yearPublished) {
     const album = {
         albumTitle : title,
         albumArtist : artist,
-        yearPublished : yearPublished
+        albumYear : yearPublished
     }
     collection.push(album);
     return collection;
@@ -27,3 +27,14 @@ console.log('add AIC', addToCollection('MTV Unplugged', 'Alice in Chains', 1996)
 console.log('add Consumed', addToCollection('Consumed', 'Plastikman', 1998));
 console.log('add reality to midi', addToCollection('Reality to Midi', 'Johannes Heil', 1998));
 console.log(collection);
+
+// create function to show collection
+function showCollection(array) {
+    console.log(array.length);
+    for (let i in array) {
+        console.log(array[i].albumTitle, 'by', array[i].albumArtist, 'published in', array[i].albumYear);
+    }
+}
+
+// test showCollection
+showCollection(collection);

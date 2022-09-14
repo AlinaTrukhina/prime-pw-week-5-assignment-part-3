@@ -37,4 +37,22 @@ function showCollection(array) {
 }
 
 // test showCollection
-showCollection(collection);
+console.log('test showCollection', showCollection(collection));
+
+// add findByArtist function to search by artist name
+function findByArtist(artist, array) {
+    const artistArray = [];
+    for (let n in array) {
+        if (artist === array[n].albumArtist) {
+            artistArray.push(array[n]);
+        } else { 
+//            console.log('Artist not found');
+//            return artistArray; commented out because a return here would exit the function
+        }
+    }
+    return artistArray;
+}
+
+// test findByArtist
+console.log('test findByArtist, Plastikman:', findByArtist('Plastikman', collection));
+console.log('find by artist, Nirvana - expect empty array', findByArtist('Nirvana', collection));

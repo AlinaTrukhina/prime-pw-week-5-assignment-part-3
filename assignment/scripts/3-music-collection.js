@@ -5,27 +5,29 @@ let collection = [];
 
 // create function that makes an object for each album
 
-function addToCollection(title, artist, yearPublished) {
+function addToCollection(title, artist, yearPublished, tracks) {
     const album = {
         albumTitle : title,
         albumArtist : artist,
-        albumYear : yearPublished
+        albumYear : yearPublished,
+        albumTracks : [tracks]
     }
     collection.push(album);
     return collection;
 }
 
 // quick test
-console.log('add a record to collection:', addToCollection('Sheet One', 'Plastikman', 1993));
-console.log(collection);
+console.log('add a record to collection:', addToCollection('Sheet One', 'Plastikman', 1993, [ 
+['Drp', '1:45'], ['Plasticity', '11:00'], ['Gak', '5:38'], ['Okx', '0:34'], ['Helikopter', '8:20']]));
+console.log('log collection', collection);
 
 // test the function - add 6 albums, return array
 console.log('add boards of canada', addToCollection('Music Has The Right To Children', 'Boards of Canada', 1998));
 console.log('add waveform transmission', addToCollection('Waveform Transmission vol 1', 'Jeff Mills', 1992));
 console.log('add some drexcia side project', addToCollection('The Opening of the Cerebral Gate', 'Transllusion', 2001));
 console.log('add AIC', addToCollection('MTV Unplugged', 'Alice in Chains', 1996));
-console.log('add Consumed', addToCollection('Consumed', 'Plastikman', 1998));
-console.log('add reality to midi', addToCollection('Reality to Midi', 'Johannes Heil', 1998));
+console.log('add Consumed', addToCollection('Consumed', 'Plastikman', 1998, ['Contain', '8:29']));
+console.log('add reality to midi', addToCollection('Reality to Midi', 'Johannes Heil', 1998, [['Enter Club', '6:25'], ['Paradox', '6:43']]));
 console.log(collection);
 
 // create function to show collection

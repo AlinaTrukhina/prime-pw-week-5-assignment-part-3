@@ -85,10 +85,10 @@ function search(array, artist, year) {
     for (n in array) {
         if (artist === array[n].albumArtist && year === array[n].albumYear) { // checks if both album in year are present
             artistArray.push(array[n]);
-        } else if (artist == null || year == null || collection == null) { // checks if either input is null
+        } else if (artist == null || year == null || array == null) { // checks if either input is null
 
         return array;   // returns original array 
-        }   
+        }               // exit array iteration
     }   
     return artistArray; // returns new array
 }
@@ -100,3 +100,36 @@ console.log('test search function - false', search(collection, 'Plastikman', 199
 console.log('test search function - input empty', search(collection, 'Alice In Chains'));
 console.log('test search function - no search param', search(collection));
 
+
+// add search that allowssearch by track name
+function searchWithTrack(array, artist, year, trackName) {
+    let searchArray = [];
+    for (let n in array) {
+        if (artist === array[n].albumArtist && year === array[n].albumYear) { // checks if arguments passed match album + year contained in array
+//            console.log(array[n]);
+//            searchArray.push(array[n]);
+            for (let t = 0; t < array[n].tracks.length; t++) {                                  // iterates through array of tracks
+                console.log(array[n].tracks[t]);
+                if (trackName === array[n].tracks[t]) {         
+                    console.log(array[n].tracks[t][0]);              // check if track name matches the track in tracks array line
+                    searchArray.push(array[n].tracks[t]);
+                    console.log(searchArray);
+                } 
+            } 
+        }   else if (artist == null || year == null || array == null) {
+            return array;
+        }
+//        searchArray.push(array[n]);
+    }    
+    return searchArray;
+}
+
+// test searchWithTrack
+//console.log('test searchWithTrack function - true for album but not track', searchWithTrack(collection, 'Plastikman', 1998));
+console.log('test searchWithTrack function - Plastikman, Sheet One, 1993, Gak', searchWithTrack(collection, 'Plastikman', 1993, 'Gak'));
+//console.log(collection[0].tracks[2]);
+console.log('test searchWithTrack function - searchWithTrack: Plastikman', '1998', 'Contain', searchWithTrack(collection, 'Plastikman', '1998', 'Contain'));
+console.log('test searchWithTrack function - Alice In Chains, track not in collection', search(collection, 'Alice in Chains', 1996, 'Got Me Wrong'));
+console.log('test searchWithTrack function - false', search(collection, 'Plastikman', 1991));
+console.log('test searchWithTrack function - empty inputs', search(collection, 'Alice In Chains'));
+console.log('test searchWithTrack function - no search param', search(collection));

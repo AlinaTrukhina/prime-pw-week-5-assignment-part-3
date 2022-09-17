@@ -30,6 +30,7 @@ console.log('add Consumed', addToCollection('Consumed', 'Plastikman', 1998, [{'C
 console.log('add reality to midi', addToCollection('Reality to Midi', 'Johannes Heil', 1998, [{'Enter Club':'6:25'}, {'Paradox':'6:43'}]));
 console.log(collection);
 
+
 // create function to show collection
 function showCollection(array) {
     console.log(array.length);
@@ -47,10 +48,10 @@ console.log('test showCollection', showCollection(collection));
 // create updated showCollection function to also show tracks
 function showWithTracks(array) {
     console.log(array.length);
-    for (let i in array) {
-        console.log(array[i].albumTitle, 'by', array[i].albumArtist, 'published in', array[i].albumYear);
-        if (array[i].tracks != undefined) {        
-            console.log(array[i].tracks);
+    for (let i in array) {                                                                                  // loops through the array given to function
+        console.log(array[i].albumTitle, 'by', array[i].albumArtist, 'published in', array[i].albumYear);   // prints out sentence to console adding in the appropriate properties
+        if (array[i].tracks != undefined) {                                                                 // checks to see if the album has any tracks
+            console.log(array[i].tracks);                                                                   // logs each track object to console
         }
     }
 }
@@ -101,25 +102,28 @@ console.log('test search function - input empty', search(collection, 'Alice In C
 console.log('test search function - no search param', search(collection));
 
 
-// add search that allowssearch by track name
+// add search that allows search by track name
 function searchWithTrack(array, artist, year, trackName) {
     let searchArray = [];
-    for (let n in array) {
-        if (artist === array[n].albumArtist && year === array[n].albumYear) { // checks if arguments passed match album + year contained in array
+    for (let n in array) {                                                      // iterates through collection array
+        if (artist === array[n].albumArtist && year === array[n].albumYear) {   // checks if arguments passed match album + year contained in array
 //            console.log(array[n]);
 //            searchArray.push(array[n]);
-            for (let t = 0; t < array[n].tracks.length; t++) {                                  // iterates through array of tracks
-                console.log(array[n].tracks[t]);
-                if (trackName === array[n].tracks[t]) {         
-                    console.log(array[n].tracks[t][0]);              // check if track name matches the track in tracks array line
-                    searchArray.push(array[n].tracks[t]);
-                    console.log(searchArray);
+
+//            if (array[n].tracks != undefined) {
+
+                for (let t = 0; t < array[n].tracks.length; t++) {                  // iterates through array of tracks
+    //                console.log(array[n].tracks[t]);
+                    if (array[n].tracks[t].hasOwnProperty(trackName) === true) {    // checks if the track name provided matches the track in the array     
+    //                    console.log(array[n].tracks[t]);                          // check if track name matches the track in tracks array line
+                        searchArray.push(array[n].tracks[t]);
+    //                    console.log(searchArray);
+                    } 
                 } 
-            } 
-        }   else if (artist == null || year == null || array == null) {
-            return array;
+
+            } else if (artist == null || year == null || array == null || trackName == null) {  // checks if any input parameters are empty
+            return array;                                                                       // returns original array (collection)
         }
-//        searchArray.push(array[n]);
     }    
     return searchArray;
 }
@@ -127,9 +131,7 @@ function searchWithTrack(array, artist, year, trackName) {
 // test searchWithTrack
 //console.log('test searchWithTrack function - true for album but not track', searchWithTrack(collection, 'Plastikman', 1998));
 console.log('test searchWithTrack function - Plastikman, Sheet One, 1993, Gak', searchWithTrack(collection, 'Plastikman', 1993, 'Gak'));
-//console.log(collection[0].tracks[2]);
-console.log('test searchWithTrack function - searchWithTrack: Plastikman', '1998', 'Contain', searchWithTrack(collection, 'Plastikman', '1998', 'Contain'));
-console.log('test searchWithTrack function - Alice In Chains, track not in collection', search(collection, 'Alice in Chains', 1996, 'Got Me Wrong'));
-console.log('test searchWithTrack function - false', search(collection, 'Plastikman', 1991));
-console.log('test searchWithTrack function - empty inputs', search(collection, 'Alice In Chains'));
-console.log('test searchWithTrack function - no search param', search(collection));
+console.log('test searchWithTrack function - searchWithTrack: Plastikman', '1998', 'Contain', searchWithTrack(collection, 'Plastikman', 1998, 'Contain'));
+console.log('test searchWithTrack function - false, track name not in record', searchWithTrack(collection, 'Plastikman', 1991, 'track name'));
+console.log('test searchWithTrack function - empty inputs, return collection', searchWithTrack(collection, 'Alice In Chains'));
+console.log('test searchWithTrack function - no track search param, return colletion', searchWithTrack(collection, 'Alice In Chains', 1996));

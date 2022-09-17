@@ -18,7 +18,7 @@ function addToCollection(title, artist, yearPublished, tracks) {
 
 // quick test
 console.log('add a record to collection:', addToCollection('Sheet One', 'Plastikman', 1993, [{'Drp':'1:45'},
-, {'Plasticity':'11:00'}, {'Gak':'5:38'}, {'Okx':'0:34'}, {'Helikopter':'8:20'}]));
+ {'Plasticity':'11:00'}, {'Gak':'5:38'}, {'Okx':'0:34'}, {'Helikopter':'8:20'}]));
 console.log('log collection', collection);
 
 // test the function - add 6 albums, return array
@@ -26,7 +26,7 @@ console.log('add boards of canada', addToCollection('Music Has The Right To Chil
 console.log('add waveform transmission', addToCollection('Waveform Transmission vol 1', 'Jeff Mills', 1992));
 console.log('add some drexcia side project', addToCollection('The Opening of the Cerebral Gate', 'Transllusion', 2001));
 console.log('add AIC', addToCollection('MTV Unplugged', 'Alice in Chains', 1996));
-console.log('add Consumed', addToCollection('Consumed', 'Plastikman', 1998, ['Contain', '8:29']));
+console.log('add Consumed', addToCollection('Consumed', 'Plastikman', 1998, [{'Contain':'8:29'}]));
 console.log('add reality to midi', addToCollection('Reality to Midi', 'Johannes Heil', 1998, [{'Enter Club':'6:25'}, {'Paradox':'6:43'}]));
 console.log(collection);
 
@@ -42,6 +42,22 @@ function showCollection(array) {
 console.log('test showCollection');
 // showCollection(collection);
 console.log('test showCollection', showCollection(collection));
+
+
+// create updated showCollection function to also show tracks
+function showWithTracks(array) {
+    console.log(array.length);
+    for (let i in array) {
+        console.log(array[i].albumTitle, 'by', array[i].albumArtist, 'published in', array[i].albumYear);
+        if (array[i].tracks != undefined) {        
+            console.log(array[i].tracks);
+        }
+    }
+}
+
+// test showWithTracks
+console.log('test showWithTracks');
+console.log('test showWithTracks', showWithTracks(collection));
 
 
 // add findByArtist function to search by artist name in any record collection

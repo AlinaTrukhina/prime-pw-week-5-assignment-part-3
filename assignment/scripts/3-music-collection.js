@@ -10,15 +10,15 @@ function addToCollection(title, artist, yearPublished, tracks) {
         albumTitle : title,
         albumArtist : artist,
         albumYear : yearPublished,
-        albumTracks : [tracks]
+        tracks : tracks
     }
     collection.push(album);
     return collection;
 }
 
 // quick test
-console.log('add a record to collection:', addToCollection('Sheet One', 'Plastikman', 1993, [ 
-['Drp', '1:45'], ['Plasticity', '11:00'], ['Gak', '5:38'], ['Okx', '0:34'], ['Helikopter', '8:20']]));
+console.log('add a record to collection:', addToCollection('Sheet One', 'Plastikman', 1993, [{'Drp':'1:45'},
+, {'Plasticity':'11:00'}, {'Gak':'5:38'}, {'Okx':'0:34'}, {'Helikopter':'8:20'}]));
 console.log('log collection', collection);
 
 // test the function - add 6 albums, return array
@@ -27,7 +27,7 @@ console.log('add waveform transmission', addToCollection('Waveform Transmission 
 console.log('add some drexcia side project', addToCollection('The Opening of the Cerebral Gate', 'Transllusion', 2001));
 console.log('add AIC', addToCollection('MTV Unplugged', 'Alice in Chains', 1996));
 console.log('add Consumed', addToCollection('Consumed', 'Plastikman', 1998, ['Contain', '8:29']));
-console.log('add reality to midi', addToCollection('Reality to Midi', 'Johannes Heil', 1998, [['Enter Club', '6:25'], ['Paradox', '6:43']]));
+console.log('add reality to midi', addToCollection('Reality to Midi', 'Johannes Heil', 1998, [{'Enter Club':'6:25'}, {'Paradox':'6:43'}]));
 console.log(collection);
 
 // create function to show collection
@@ -44,12 +44,12 @@ console.log('test showCollection');
 console.log('test showCollection', showCollection(collection));
 
 
-// add findByArtist function to search by artist name
+// add findByArtist function to search by artist name in any record collection
 function findByArtist(artist, array) {
-    const artistArray = [];
-    for (let n in array) {
-        if (artist === array[n].albumArtist) {
-            artistArray.push(array[n]);
+    const artistArray = []; // create empty array
+    for (let n in array) { // iterate through array passed to function
+        if (artist === array[n].albumArtist) {  // compare artist name passed to artist name in array
+            artistArray.push(array[n]);         // add matched name to new array
         } else { 
 //            console.log('Artist not found');
 //            return artistArray; commented out because a return here would exit the function
@@ -71,10 +71,10 @@ function search(array, artist, year) {
             artistArray.push(array[n]);
         } else if (artist == null || year == null || collection == null) { // checks if either input is null
 
-        return array;
+        return array;   // returns original array 
         }   
     }   
-    return artistArray;
+    return artistArray; // returns new array
 }
 
 

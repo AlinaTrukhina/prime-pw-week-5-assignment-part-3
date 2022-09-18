@@ -50,11 +50,15 @@ function showWithTracks(array) {
     console.log(array.length);
     for (let i in array) {                                                                                  // loops through the array given to function
         console.log(array[i].albumTitle, 'by', array[i].albumArtist, 'published in', array[i].albumYear);   // prints out sentence to console adding in the appropriate properties
-        //if (array[i].tracks !== undefined) {                                                                 // checks to see if the album has any tracks
-            for (let t in array[i].tracks) {
-                console.log(array[i].tracks);                      // logs each track object to console
-            }                                                                 
-        //}
+        if (array[i].tracks !== undefined) {                                                                // checks to see if the album has any tracks
+            //for (let t in array[i].tracks) {                                                              // tried to use a for in function but t became defined as a string
+            for (let n = 0; n < array[i].tracks.length; n++) {
+                let trackNum = n + 1;                                                                       // define track number to log 
+                console.log(trackNum,array[i].tracks[n].name, ':', array[i].tracks[n].duration);
+                trackNum++;
+            }     
+//        console.log(array[i].tracks);                      // check that function is reaching the 'tracks' property in the collection object                                                             
+        }
     }
 }
 
